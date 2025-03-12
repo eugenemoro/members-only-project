@@ -1,0 +1,29 @@
+<%- include('../partials/head', {title}) %> 
+<%- include('../partials/header', {title}) %>
+<body>
+  <div class="content">
+    <% for (let i = messages.length - 1; i >= 0; i -= 1) {%>
+      <% const messageLink = '/messages/' + messages[i].id %>
+      <div class="message">
+        <div class="message-head">
+          <div>
+            <h3><%= locals.currentUser.user_id ? `${messages[i].first_name} ${messages[i].last_name}` : 'Hidden' %></h3>
+            <p><%= messages[i].added.toLocaleString() %></p>
+          </div>
+          <div class="message-btns">
+            <% if (locals.currentUser.user_id && messages[i].author_id === locals.currentUser.user_id) { %>
+              <a href="<%= messageLink + '/edit' %>"><button>Edit</button></a>
+              <a href="<%= messageLink + '/delete' %>"><button>Delete</button></a>
+            <% } %> 
+            <a href= <%= messageLink %>><button>Open</button></a> 
+          </div>
+        </div>
+        <div class="message-body">
+          <h4><%= messages[i].title %></h4>
+          <p><%= messages[i].text %></p>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</body>
+<%- include('../partials/footer') %>

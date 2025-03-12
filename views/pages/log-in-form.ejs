@@ -1,0 +1,29 @@
+<%- include('../partials/head', {title}) %> 
+<%- include('../partials/header') %>
+<body>
+  <div class="content">
+    <form action="/log-in" method="POST">
+      <div class="form-content">
+        <h2>Log in</h2>
+        <div class="input-block">
+          <label for="username">Email</label>
+          <input id="username" name="username" placeholder="username" type="email" required />
+        </div>
+        <div class="input-block">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+        <div class="form-buttons">
+          <button type="submit">Log in</button>
+          <button onclick="cancelBtn(event);">Cancel</button>
+        </div>
+        <% if (locals.message) { %>
+          <div class="error-message">
+            <p><%= locals.message %></p>
+          </div>
+        <% } %>
+      </div>
+    </form>
+  </div>
+</body>
+<%- include('../partials/footer') %>

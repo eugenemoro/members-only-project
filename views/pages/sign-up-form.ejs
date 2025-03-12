@@ -1,0 +1,32 @@
+<%- include('../partials/head', {title}) %>
+<%- include('../partials/header') %>
+<body>
+  <div class="content">
+    <form action="" method="POST">
+      <div class="form-content">
+        <h2>Sign Up</h2>
+        <div class="input-block">
+          <label for="username">Email</label>
+          <input id="username" name="username" placeholder="username" type="email" required />
+        </div>
+        <div class="input-block">
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName" placeholder="John" type="text" required />
+        </div>
+        <div class="input-block">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" placeholder="Doe" type="text" required />
+        </div>
+        <div class="input-block">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+        <div class="form-buttons">
+          <button type="submit">Sign Up</button>
+          <button onclick="cancelBtn(event);">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+<%- include('../partials/footer') %>

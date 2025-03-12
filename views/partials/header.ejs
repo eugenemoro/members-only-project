@@ -1,0 +1,13 @@
+<header>
+  <h1>Project: Members Only</h1>
+  <div class="header-btn-section">
+    <% if (locals.currentUser.user_id) { %>
+      <p><%= locals.currentUser.first_name %> <%= locals.currentUser.last_name %></p>
+      <a href="/messages/new"><button>New message</button></a>
+      <a href="/log-out"><button>Log out</button></a>
+    <% } else { %>
+      <a href="/log-in"><button>Log in</button></a>
+      <a href="/sign-up"><button>Sign up</button></a>
+    <% } %>    
+  </div>
+</header>

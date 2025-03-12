@@ -1,0 +1,26 @@
+<%- include('../partials/head', {title}) %> 
+<%- include('../partials/header') %>
+<body>
+  <div class="content">
+    <div class="message">
+      <div class="message-head">
+        <div>
+          <h3><%= message.first_name %> <%= message.last_name %></h3>
+          <p><%= message.added.toLocaleString() %></p>
+        </div>
+        <div class="message-btns">
+          <% if (message.author_id === locals.currentUser.user_id) { %>
+            <a href="/messages/<%= message.id %>/edit"><button>Edit</button></a>
+            <a href="/messages/<%= message.id %>/delete"><button>Delete</button></a>
+          <% } %> 
+          <a href="/"><button>Home</button></a> 
+        </div>
+      </div>
+      <div class="message-body">
+        <h4><%= message.title %></h4>
+        <p><%= message.text %></p>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include('../partials/footer') %>

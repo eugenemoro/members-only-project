@@ -1,0 +1,30 @@
+{
+  "name": "members-only-project",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/eugenemoro/members-only-project#readme",
+  "bugs": {
+    "url": "https://github.com/eugenemoro/members-only-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugenemoro/members-only-project.git"
+  },
+  "license": "ISC",
+  "author": "Eugene Morozov",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.13.3"
+  }
+}
