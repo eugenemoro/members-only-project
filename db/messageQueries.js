@@ -19,7 +19,6 @@ async function getMessage(id) {
     'SELECT * FROM messages INNER JOIN users ON author_id = user_id WHERE messages.id = $1',
     [id]
   );
-  console.log(rows[0]);
   return rows[0];
 }
 

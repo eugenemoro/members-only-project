@@ -71,7 +71,6 @@ app.use((req, res, next) => {
     nullUser = { user_id: null };
     res.locals.currentUser = nullUser;
   }
-
   next();
 });
 

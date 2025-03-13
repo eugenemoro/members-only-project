@@ -7,19 +7,30 @@
         <h2>Sign Up</h2>
         <div class="input-block">
           <label for="username">Email</label>
-          <input id="username" name="username" placeholder="username" type="email" required />
+          <input id="username" name="username" placeholder="username" type="email" value="<%= locals.formBody ? locals.formBody.username : '' %>" required />
         </div>
         <div class="input-block">
           <label for="firstName">First Name</label>
-          <input id="firstName" name="firstName" placeholder="John" type="text" required />
+          <input id="firstName" name="firstName" placeholder="John" type="text" value="<%= locals.formBody ? locals.formBody.firstName : '' %>" required />
         </div>
         <div class="input-block">
           <label for="lastName">Last Name</label>
-          <input id="lastName" name="lastName" placeholder="Doe" type="text" required />
+          <input id="lastName" name="lastName" placeholder="Doe" type="text" value="<%= locals.formBody ? locals.formBody.lastName : '' %>" required />
         </div>
         <div class="input-block">
           <label for="password">Password</label>
           <input id="password" name="password" type="password" required />
+        </div>
+        <div class="input-block">
+          <label for="confirm-password">Confirm password</label>
+          <input id="confirm-password" name="confirm-password" type="password" required />
+        </div>
+        <div class="form-errors">
+          <% if (locals.errors) { %>
+            <% for (let i = 0; i < locals.errors.length; i++) { %>
+              <p><%= locals.errors[i].msg %></p>
+            <% } %>
+          <% } %>
         </div>
         <div class="form-buttons">
           <button type="submit">Sign Up</button>

@@ -68,6 +68,10 @@ form {
   }
 }
 
+.form-errors {
+  color: red;
+}
+
 
 input, 
 textarea {
