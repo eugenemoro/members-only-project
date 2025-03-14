@@ -86,3 +86,9 @@ textarea {
   display: flex;
   flex-direction: column;
 }
+
+.header-title-section {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}

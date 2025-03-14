@@ -5,6 +5,8 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
+require('dotenv').config();
 
 const pool = require('./db/pool');
 const indexRouter = require('./routes/indexRoute');
@@ -18,9 +20,10 @@ app.set('view engine', 'ejs');
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
 
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: false }));
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(express.urlencoded({ extended: false }));
 
 passport.use(
@@ -32,12 +35,12 @@ passport.use(
       );
       const user = rows[0];
       if (!user) {
-        return done(null, false, { message: 'Incorrect username' });
+        return done(null, false, { message: 'Verify your username and password' });
       }
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
         // passwords do not match!
-        return done(null, false, { message: 'Incorrect password' });
+        return done(null, false, { message: 'Verify your username and password' });
       }
       return done(null, user);
     } catch (err) {

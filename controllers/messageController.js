@@ -1,4 +1,5 @@
 const db = require('../db/messageQueries');
+const passport = require('passport');
 
 async function getMessages(req, res) {
   const messages = await db.getAllMessages();

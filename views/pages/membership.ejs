@@ -1,0 +1,28 @@
+<%- include('../partials/head', {title}) %> 
+<%- include('../partials/header') %>
+<body>
+  <div class="content">
+    <form action="/membership" method="POST">
+      <div class="form-content">
+        <h2>Membership activation</h2>
+        <p>Ps! Code is 'alohomora'</p>
+        <div class="input-block">
+          <label for="membershipCode">Secret code</label>
+          <input id="membershipCode" name="membershipCode" placeholder="Enter code" type="password" required />
+        </div>
+        <div class="form-errors">
+          <% if (locals.errors) { %>
+            <% for (let i = 0; i < locals.errors.length; i++) { %>
+              <p><%= locals.errors[i].msg %></p>
+            <% } %>
+          <% } %>
+        </div>
+        <div class="form-buttons">
+          <button type="submit">Activate</button>
+          <button onclick="cancelBtn(event);">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+<%- include('../partials/footer') %>

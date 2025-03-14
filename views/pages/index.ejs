@@ -7,7 +7,7 @@
       <div class="message">
         <div class="message-head">
           <div>
-            <h3><%= locals.currentUser.user_id ? `${messages[i].first_name} ${messages[i].last_name}` : 'Hidden' %></h3>
+            <h3><%= (locals.currentUser.user_id === messages[i].author_id || locals.currentUser.membership) ? `${messages[i].first_name} ${messages[i].last_name}` : 'Hidden' %></h3>
             <p><%= messages[i].added.toLocaleString() %></p>
           </div>
           <div class="message-btns">
@@ -15,7 +15,9 @@
               <a href="<%= messageLink + '/edit' %>"><button>Edit</button></a>
               <a href="<%= messageLink + '/delete' %>"><button>Delete</button></a>
             <% } %> 
-            <a href= <%= messageLink %>><button>Open</button></a> 
+            <% if (locals.currentUser.user_id && (messages[i].author_id === locals.currentUser.user_id || locals.currentUser.membership)) { %>
+              <a href= <%= messageLink %>><button>Open</button></a> 
+            <% } %>
           </div>
         </div>
         <div class="message-body">

@@ -5,7 +5,9 @@ const pool = require('../db/pool');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 
-router.get('/', (req, res) => res.redirect('/messages'));
+router.get('/', (req, res) => {
+  res.redirect('/messages');
+});
 
 router.get('/sign-up', (req, res) =>
   res.render('sign-up-form', { title: 'Sign up' })
@@ -61,7 +63,8 @@ router.post(
 );
 
 router.get('/log-in', (req, res) => {
-  res.render('log-in-form', { title: 'Log in' });
+  const errorMessage = req.flash('error');
+  res.render('log-in-form', { title: 'Log in', errorMessage });
 });
 
 router.post(
@@ -69,6 +72,7 @@ router.post(
   passport.authenticate('local', {
     successRedirect: '/messages',
     failureRedirect: '/log-in',
+    failureFlash: true,
   })
 );
 
@@ -79,6 +83,30 @@ router.get('/log-out', (req, res, next) => {
     }
     res.redirect('/');
   });
+});
+
+router.get(
+  '/membership',
+  (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.redirect('/log-in');
+    }
+  },
+  (req, res) => {
+    res.render('membership', { title: 'Membership' , errors: []});
+  }
+);
+
+router.post('/membership', async (req, res) => {
+  const { membershipCode } = req.body;
+  if (membershipCode === process.env.MEMBER_CODE) {
+    await pool.query('UPDATE users SET membership = true WHERE user_id = $1', [req.user.user_id]);
+    res.redirect('/');
+  } else {
+    res.render('membership', { title: 'Membership' , errors: [{msg: 'Wrong code'}]});
+  }
 });
 
 module.exports = router;

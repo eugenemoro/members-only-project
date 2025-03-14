@@ -13,15 +13,15 @@
           <label for="password">Password</label>
           <input id="password" name="password" type="password" required />
         </div>
+        <div class="form-errors">
+          <% if (errorMessage.length > 0) { %>
+            <p><%= errorMessage[0] %></p>
+          <% } %>  
+        </div>
         <div class="form-buttons">
           <button type="submit">Log in</button>
           <button onclick="cancelBtn(event);">Cancel</button>
         </div>
-        <% if (locals.message) { %>
-          <div class="error-message">
-            <p><%= locals.message %></p>
-          </div>
-        <% } %>
       </div>
     </form>
   </div>

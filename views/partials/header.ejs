@@ -1,5 +1,10 @@
 <header>
-  <h1>Project: Members Only</h1>
+  <div class="header-title-section">
+    <h1>Project: Members Only</h1>
+    <% if (locals.currentUser.user_id && !locals.currentUser.membership) { %>
+      <a href="/membership"><button>Membership</button></a>
+    <% } %>
+  </div>
   <div class="header-btn-section">
     <% if (locals.currentUser.user_id) { %>
       <p><%= locals.currentUser.first_name %> <%= locals.currentUser.last_name %></p>
