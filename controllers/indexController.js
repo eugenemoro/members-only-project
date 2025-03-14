@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 const db = require('../db/userQueries');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 function getHome(req, res) {
   res.redirect('/messages');

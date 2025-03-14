@@ -4,7 +4,7 @@ const indexController = require('../controllers/indexController');
 const signUpValidator = require('../validators/signUpValidator');
 const authValidator = require('../validators/authValidator');
 const passport = require('passport');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 
 router.get('/', indexController.getHome);

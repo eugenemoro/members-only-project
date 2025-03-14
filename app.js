@@ -4,13 +4,14 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const flash = require('connect-flash');
 require('dotenv').config();
 
 const pool = require('./db/pool');
 const indexRouter = require('./routes/indexRoute');
-const messageRouter = require('./routes/messageRouter');
+const messageRouter = 
+require('./routes/messageRouter');
 
 const app = express();
 
