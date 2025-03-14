@@ -1,38 +1,31 @@
 const express = require('express');
 const messageRouter = express.Router();
 const messageController = require('../controllers/messageController');
-
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    next();
-  } else {
-    res.redirect('/log-in');
-  }
-}
+const authValidator = require('../validators/authValidator');
 
 messageRouter.get('/', messageController.getMessages);
 
-messageRouter.get('/new', isAuthenticated, messageController.getNewMessage);
+messageRouter.get('/new', authValidator, messageController.getNewMessage);
 
-messageRouter.post('/new', isAuthenticated, messageController.postNewMessage);
+messageRouter.post('/new', authValidator, messageController.postNewMessage);
 
-messageRouter.get('/:id', isAuthenticated, messageController.getMessageDetails);
+messageRouter.get('/:id', authValidator, messageController.getMessageDetails);
 
 messageRouter.get(
   '/:id/edit',
-  isAuthenticated,
+  authValidator,
   messageController.getEditMessage
 );
 
 messageRouter.post(
   '/:id/edit',
-  isAuthenticated,
+  authValidator,
   messageController.postMessageDetails
 );
 
 messageRouter.get(
   '/:id/delete',
-  isAuthenticated,
+  authValidator,
   messageController.getDeleteMessage
 );
 
